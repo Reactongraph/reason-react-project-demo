@@ -12,11 +12,10 @@ type action =
   | Submit;
 
 // defines Statefull component names Todo
-let component = ReasonReact.reducerComponent("Todo");
+let component = ReasonReact.reducerComponent("TodoTask");
 
 let make = _children => {
-
-// Added new item in list
+  // Added new item in list
   let handleSubmit = state => {
     // ReasonReact.Router.push("Home");
     let newId: int = List.length(state.items);
@@ -29,11 +28,13 @@ let make = _children => {
     ReasonReact.Update({items: newList, inputText: ""});
   };
 
-// defines initial state
+  // defines initial state
   {
     ...component,
     initialState: () => {
-      items: [{id: 0, title: "First Item added in toDo list", completed: false}],
+      items: [
+        {id: 0, title: "First Item added in toDo list", completed: false},
+      ],
       inputText: "",
     },
 
@@ -45,14 +46,17 @@ let make = _children => {
         )
 
       // added item completed or not
-      | Toggle(id) => (state => ReasonReact.Update({
+      | Toggle(id) => (
+          state =>
+            ReasonReact.Update({
               ...state,
               items:
-                List.map((item: TodoType.item) =>
+                List.map(
+                  (item: TodoType.item) =>
                     item.id == id ?
                       {
                         ...item,
-                        TodoType.completed: ! TodoType.(item.completed),
+                        TodoType.completed: !TodoType.(item.completed),
                       } :
                       item,
                   state.items,
@@ -61,7 +65,8 @@ let make = _children => {
         )
 
       // Remove item for list
-      | RemoveItem(id) => ( state =>
+      | RemoveItem(id) => (
+          state =>
             ReasonReact.Update({
               ...state,
               items:
@@ -76,34 +81,34 @@ let make = _children => {
       },
 
     render: self => {
-      Js.log(self)
+      Js.log(self);
       let {items, inputText} = self.state;
       <div className="app">
         <div className="app-header">
-          <div className="title"> {ReasonReact.string("Todo List data")} </div>
+          <div className="title">
+            {ReasonReact.string("Todo List data")}
+          </div>
         </div>
         <Input
-          submit=(_ => self.send(Submit))
+          submit={_ => self.send(Submit)}
           value=inputText
-          onInputText=(text => self.send(InputText(text)))
+          onInputText={text => self.send(InputText(text))}
         />
         <div className="list">
-          (
-            ReasonReact.array(
-              Array.of_list(
-                List.map(
-                  (item: TodoType.item) =>
-                    <Item
-                      key=(string_of_int(item.id))
-                      item
-                      onRemove=(id => self.send(RemoveItem(id)))
-                      onToggle=(id => self.send(Toggle(id)))
-                    />,
-                  items,
-                ),
-              ),
-            )
-          )
+          {ReasonReact.array(
+             Array.of_list(
+               List.map(
+                 (item: TodoType.item) =>
+                   <Item
+                     key={string_of_int(item.id)}
+                     item
+                     onRemove={id => self.send(RemoveItem(id))}
+                     onToggle={id => self.send(Toggle(id))}
+                   />,
+                 items,
+               ),
+             ),
+           )}
         </div>
       </div>;
     },

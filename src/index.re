@@ -61,20 +61,20 @@ module CreateRouter = (Config: Config) => {
 // defines routes name
 type page =
   | Dashboard
-  | Users
+  | SignIn
   | Home
 
 module Config = {
   type route = page;
   let toRoute = (url: ReasonReact.Router.url) =>
     switch (url.path) {
-    | ["users"] => Users
+    | ["signin"] => SignIn;
     | ["dashboard"] => Dashboard;
     | _ => Home
     };
   let toUrl = route =>
     switch (route) {
-    | Users => "/users"
+    | SignIn => "/signin"
     | Dashboard => "/dashboard"
     | Home => "/"
     };
@@ -90,15 +90,15 @@ module Routes = {
       <div className="menuBar">
         <div className="menuItems">
           <Link route= Home toUrl = Config.toUrl render ={() => str("Home")} />
-          <Link route=Users toUrl=Config.toUrl render={() => str("Users")} />
+          <Link route=SignIn toUrl=Config.toUrl render={() => str("SignIn")} />
           <Link route=Dashboard toUrl=Config.toUrl render={() => str("Dashboard")} />
         </div>
         <Router
           render={({route}) =>
             switch (route) {
             | Dashboard => <App message="Reason React Todo application" />
-            | Users => <App message="Reason React Users application" />
-            | Home => <Home message="This is home page" />
+            | SignIn => <SignIn message="Reason React Users application" />
+            | Home => <App message="Reason React Sign application"/>
             }
           }
         />
