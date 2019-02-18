@@ -79,6 +79,16 @@
   opacity: 0.95;
 }
 
+.menuItem {
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background: gray;
+  align-self: center;
+  justify-self: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

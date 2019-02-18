@@ -15,7 +15,10 @@ type action =
 let component = ReasonReact.reducerComponent("Todo");
 
 let make = _children => {
+
+// Added new item in list
   let handleSubmit = state => {
+    // ReasonReact.Router.push("Home");
     let newId: int = List.length(state.items);
     let newItem: TodoType.item = {
       id: newId,
@@ -25,17 +28,23 @@ let make = _children => {
     let newList = [newItem, ...state.items];
     ReasonReact.Update({items: newList, inputText: ""});
   };
+
+// defines initial state
   {
     ...component,
     initialState: () => {
-      items: [{id: 0, title: "Fix more bugs", completed: false}],
+      items: [{id: 0, title: "First Item added in toDo list", completed: false}],
       inputText: "",
     },
+
     reducer: action =>
       switch (action) {
+      // update state of input field
       | InputText(newText) => (
           state => ReasonReact.Update({...state, inputText: newText})
         )
+
+      // added item completed or not
       | Toggle(id) => (state => ReasonReact.Update({
               ...state,
               items:
@@ -50,6 +59,8 @@ let make = _children => {
                 ),
             })
         )
+
+      // Remove item for list
       | RemoveItem(id) => ( state =>
             ReasonReact.Update({
               ...state,
@@ -60,9 +71,12 @@ let make = _children => {
                 ),
             })
         )
+      // Submit an items
       | Submit => (state => handleSubmit(state))
       },
+
     render: self => {
+      Js.log(self)
       let {items, inputText} = self.state;
       <div className="app">
         <div className="app-header">

@@ -7,10 +7,105 @@
 [@bs.module "./registerServiceWorker"]
 external register_service_worker : unit => unit = "default";
 
-ReactDOMRe.renderToElementWithId(
-  // import component App
-  <App message="Reason React Todo application" />,
-  "root",
-);
+let str = ReasonReact.string;
+
+module type Config = {
+  type route;
+  let toUrl: route => string;
+  let toRoute: ReasonReact.Router.url => route;
+};
+
+module CreateRouter = (Config: Config) => {
+  type route = Config.route;
+
+  // defines renderProps
+  type renderProps = {
+    updateRoute: route => unit,
+    route,
+  };
+
+  // define state type
+  type state = {route};
+
+  // define action type
+  type action =
+    | UpdateRoute(route);
+
+  let component = ReasonReact.reducerComponent("Router");
+  let make = (~render, _children) => {
+    ...component,
+    initialState: () => {
+      route: ReasonReact.Router.dangerouslyGetInitialUrl() |> Config.toRoute,
+    },
+    subscriptions: self => [
+      Sub(
+        () =>
+          ReasonReact.Router.watchUrl(url =>
+            self.send(UpdateRoute(Config.toRoute(url)))
+          ),
+        ReasonReact.Router.unwatchUrl,
+      ),
+    ],
+    reducer: (action, _state) =>
+      switch (action) {
+      | UpdateRoute(route) => ReasonReact.Update({route: route})
+      },
+    render: self =>
+      render({
+        updateRoute: route => self.send(UpdateRoute(route)),
+        route: self.state.route,
+      }),
+  };
+};
+
+// defines routes name
+type page =
+  | Dashboard
+  | Users
+  | Home
+
+module Config = {
+  type route = page;
+  let toRoute = (url: ReasonReact.Router.url) =>
+    switch (url.path) {
+    | ["users"] => Users
+    | ["dashboard"] => Dashboard;
+    | _ => Home
+    };
+  let toUrl = route =>
+    switch (route) {
+    | Users => "/users"
+    | Dashboard => "/dashboard"
+    | Home => "/"
+    };
+};
+
+module Router = CreateRouter(Config);
+
+module Routes = {
+  let component = ReasonReact.statelessComponent("Routes");
+  let make = _self => {
+    ...component,
+    render: _self =>
+      <div className="menuBar">
+        <div className="menuItems">
+          <Link route= Home toUrl = Config.toUrl render ={() => str("Home")} />
+          <Link route=Users toUrl=Config.toUrl render={() => str("Users")} />
+          <Link route=Dashboard toUrl=Config.toUrl render={() => str("Dashboard")} />
+        </div>
+        <Router
+          render={({route}) =>
+            switch (route) {
+            | Dashboard => <App message="Reason React Todo application" />
+            | Users => <App message="Reason React Users application" />
+            | Home => <Home message="This is home page" />
+            }
+          }
+        />
+      </div>,
+  };
+};
+
+ReactDOMRe.renderToElementWithId(<Routes />, "root");
 
 register_service_worker();
