@@ -8,34 +8,32 @@ type state = {
 type action =
   | InputEmailText(string)
   | InputPasswordText(string)
-  | Submit
+  | Submit;
 
 // defines Statefull component names Todo
-let component = ReasonReact.reducerComponent("SignIn");
-let loginDataKey = "loginDataKey"
+let component = ReasonReact.reducerComponent("SignUp");
+let loginDataKey = "loginDataKey";
 let make = _children => {
-
   // Added new item in list
   let handleSubmit = state => {
     // convert data into string from JS code for storing data in local
     let stringifiedLoginData = [%bs.raw {| JSON.stringify(state) |}];
-    Dom.Storage.(localStorage |> setItem(loginDataKey, stringifiedLoginData))
+    Dom.Storage.(localStorage |> setItem(loginDataKey, stringifiedLoginData));
 
-    let parseLoginData = [%bs.raw {| JSON.parse(localStorage.getItem("loginDataKey")) |}];
+    let parseLoginData = [%bs.raw
+      {| JSON.parse(localStorage.getItem("loginDataKey")) |}
+    ];
     ReasonReact.Update({email: "", password: ""});
   };
 
   let handleNavigation = state => {
-    ReasonReact.Router.push("/");
+    ReasonReact.Router.push("signin");
   };
 
   // defines initial state
   {
     ...component,
-    initialState: () => {
-      email: "",
-      password: ""
-    },
+    initialState: () => {email: "", password: ""},
 
     reducer: action =>
       switch (action) {
@@ -50,22 +48,23 @@ let make = _children => {
       | Submit => (state => handleSubmit(state))
       },
 
-
     render: self => {
-      let { email, password } = self.state;
+      let {email, password} = self.state;
       <div className="loginForm">
         <InputForm
           onSubmit={_ => self.send(Submit)}
           email
           password
           onEmailInputText={email => self.send(InputEmailText(email))}
-          onPasswordInputText={password => self.send(InputPasswordText(password))}
-          buttonText="Login"
-          onNavigation={handleNavigation}
-          navigationButtonText="SignUp"
-          registrationTitle="Havn't signUp?"
+          onPasswordInputText={password =>
+            self.send(InputPasswordText(password))
+          }
+          buttonText="SignUp"
+          onNavigation=handleNavigation
+          navigationButtonText="Login"
+          registrationTitle="Already have account?"
         />
-      </div>
+      </div>;
     },
   };
 };

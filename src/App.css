@@ -13,17 +13,24 @@
   flex-direction: column;
   align-items: center;
 }
-
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
 .app {
   width: 500px;
   margin: 10px;
+}
+.loginForm {
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 400px;
+  margin: 10px;
+  margin-left: 30%;
+  margin-top: 10%;
 }
 .app-header {
   margin: 10px;
@@ -35,22 +42,27 @@
 }
 .input {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  background-color:rgb(201, 219, 210);
+  padding: 10%;
 }
-
 .input input {
-  width: 80%;
+  width: 96%;
   height: 30px;
   padding: 5px;
   font-size: medium;
+  margin-top: 5px;
+  margin-left: 2px;
 }
-
 .input button {
   background-color: green;
   color: white;
   font-size: medium;
-  width: 30%;
-  margin-left: 20px;
+  width: 100%;
+  margin-top: 5px;
+  height: 40px;
 }
 
 .list {
@@ -87,6 +99,11 @@
   background: gray;
   align-self: center;
   justify-self: center;
+}
+
+.registrationTitle {
+  color: gray;
+  align-self: center;
 }
 
 @keyframes App-logo-spin {
