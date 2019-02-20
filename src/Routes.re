@@ -74,27 +74,15 @@ module Config = {
 module Router = CreateRouter(Config);
 
   let component = ReasonReact.statelessComponent("Routes");
+  let parseLoginData = [%bs.raw{| JSON.parse(localStorage.getItem("loginDataKey")) |}];
   let make = _self => {
     ...component,
     render: _self =>
       <div className="menuBar">
-        <div className="menuItems">
-          <Link route=SignUp toUrl=Config.toUrl render={() => str("SignUp")} />
-          <Link
-            route=SignIn
-            toUrl=Config.toUrl
-            render={() => str("SignIn")}
-          />
-          <Link
-            route=Dashboard
-            toUrl=Config.toUrl
-            render={() => str("Dashboard")}
-          />
-        </div>
         <Router
           render={({route}) =>
             switch (route) {
-            | Dashboard => <App message="Reason React Todo application" />
+            | Dashboard => <App message="Welcome" userEmail=parseLoginData[0] />
             | SignIn => <SignIn />
             | SignUp => <SignUp />
             }

@@ -15,17 +15,28 @@ let component = ReasonReact.reducerComponent("SignIn");
 let loginDataKey = "loginDataKey"
 let make = _children => {
 
+  // Validate User
+  let validateUser = (storedData, enteredData) =>
+    if (storedData.email == enteredData.email &&
+          storedData.password == enteredData.password) {
+      true;
+    } else {
+      false;
+    };
+
   // Added new item in list
   let handleSubmit = state => {
-    // convert data into string from JS code for storing data in local
-    let stringifiedLoginData = [%bs.raw {| JSON.stringify(state) |}];
-    Dom.Storage.(localStorage |> setItem(loginDataKey, stringifiedLoginData))
-
     let parseLoginData = [%bs.raw {| JSON.parse(localStorage.getItem("loginDataKey")) |}];
-    ReasonReact.Update({email: "", password: ""});
+    let isValidated = validateUser(parseLoginData, state)
+    if(isValidated) {
+      ReasonReact.Router.push("dashboard");
+    } else {
+      [%bs.raw {| alert("Enter valid email and password") |}];
+    }
+    ReasonReact.Update({email: state.email, password: state.password});
   };
 
-  let handleNavigation = state => {
+  let handleNavigation = () => {
     ReasonReact.Router.push("/");
   };
 
@@ -40,11 +51,11 @@ let make = _children => {
     reducer: action =>
       switch (action) {
       // update state of input field
-      | InputEmailText(newText) => (
-          state => ReasonReact.Update({...state, email: newText})
+      | InputEmailText(email) => (
+          state => ReasonReact.Update({...state, email})
         )
-      | InputPasswordText(newText) => (
-          state => ReasonReact.Update({...state, password: newText})
+      | InputPasswordText(password) => (
+          state => ReasonReact.Update({...state, password})
         )
       // Submit an items
       | Submit => (state => handleSubmit(state))

@@ -1,26 +1,24 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-.App-intro {
+.app-intro {
   font-size: large;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
-.App-header {
-  background-color: #222;
-  height: 150px;
+.app-header {
+  height: 0px;
   padding: 20px;
-  color: white;
 }
 .app {
-  width: 500px;
+  width: 100%;
   margin: 10px;
 }
 .loginForm {
@@ -40,6 +38,10 @@
   font-size: 25px;
   font-weight: 500;
 }
+.title-div {
+  margin-top: -10%;
+}
+
 .input {
   display: flex;
   justify-content: center;
@@ -57,7 +59,7 @@
   margin-left: 2px;
 }
 .input button {
-  background-color: green;
+  background-color: rgb(91, 100, 91);
   color: white;
   font-size: medium;
   width: 100%;
@@ -91,20 +93,40 @@
   opacity: 0.95;
 }
 
-.menuItem {
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background: gray;
-  align-self: center;
-  justify-self: center;
-}
-
 .registrationTitle {
   color: gray;
   align-self: center;
 }
+.welcome-message {
+  float: left;
+  background-color: aquamarine;
+  width: 105%;
+  flex-direction: row;
+  margin-left: -3%;
+}
+
+.todo-app {
+  flex-direction: row;
+}
+
+.container {
+  width: 200%;
+  background-color: blue;
+  margin-left: -30%;
+}
+.input-div {
+  width: 40%;
+  float: left;
+  height: auto;
+  background-color: blue;
+  margin-right: 5%;
+}
+.list-div {
+  width: 40%;
+  float: left;
+  height: auto;
+}
+
 
 @keyframes App-logo-spin {
   from {

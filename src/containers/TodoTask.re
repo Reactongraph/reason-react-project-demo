@@ -81,34 +81,39 @@ let make = _children => {
       },
 
     render: self => {
-      Js.log(self);
       let {items, inputText} = self.state;
-      <div className="app">
+      <div className="app1">
         <div className="app-header">
-          <div className="title">
-            {ReasonReact.string("Todo List data")}
+          <div className="title-div">
+            <p className="title">{ReasonReact.string("Add todo data in list")}</p>
           </div>
         </div>
-        <Input
-          submit={_ => self.send(Submit)}
-          value=inputText
-          onInputText={text => self.send(InputText(text))}
-        />
-        <div className="list">
-          {ReasonReact.array(
-             Array.of_list(
-               List.map(
-                 (item: TodoType.item) =>
-                   <Item
-                     key={string_of_int(item.id)}
-                     item
-                     onRemove={id => self.send(RemoveItem(id))}
-                     onToggle={id => self.send(Toggle(id))}
-                   />,
-                 items,
-               ),
-             ),
-           )}
+        <div className="container">
+          <div className="input-div">
+            <Input
+              submit={_ => self.send(Submit)}
+              value=inputText
+              onInputText={text => self.send(InputText(text))}
+            />
+          </div>
+          <div className="list-div">
+            <div className="list">
+                {ReasonReact.array(
+                  Array.of_list(
+                    List.map(
+                      (item: TodoType.item) =>
+                        <Item
+                          key={string_of_int(item.id)}
+                          item
+                          onRemove={id => self.send(RemoveItem(id))}
+                          onToggle={id => self.send(Toggle(id))}
+                        />,
+                      items,
+                    ),
+                  ),
+                )}
+              </div>
+          </div>
         </div>
       </div>;
     },

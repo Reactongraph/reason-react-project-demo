@@ -13,20 +13,34 @@ type action =
 // defines Statefull component names Todo
 let component = ReasonReact.reducerComponent("SignUp");
 let loginDataKey = "loginDataKey";
+
 let make = _children => {
-  // Added new item in list
+
+  //Validate email and password
+  let validateUser = (email, password) => {
+    if (String.length(email)> 12 && String.length(password) > 5) {
+      true
+    } else {
+      false
+    }
+  }
+
+  //Signup function to store data locally if email and password is valid
   let handleSubmit = state => {
     // convert data into string from JS code for storing data in local
-    let stringifiedLoginData = [%bs.raw {| JSON.stringify(state) |}];
-    Dom.Storage.(localStorage |> setItem(loginDataKey, stringifiedLoginData));
-
-    let parseLoginData = [%bs.raw
-      {| JSON.parse(localStorage.getItem("loginDataKey")) |}
-    ];
-    ReasonReact.Update({email: "", password: ""});
+    let isValidated = validateUser(state.email, state.password)
+    if(isValidated) {
+      let stringifiedLoginData = [%bs.raw {| JSON.stringify(state) |}];
+      Dom.Storage.(localStorage |> setItem(loginDataKey, stringifiedLoginData));
+      ReasonReact.Router.push("dashboard");
+    } else {
+      [%bs.raw {| alert("Enter valid email and password") |}];
+    }
+      ReasonReact.Update({email: state.email, password: state.password});
   };
 
-  let handleNavigation = state => {
+  // define navigation
+  let handleNavigation = () => {
     ReasonReact.Router.push("signin");
   };
 
@@ -37,12 +51,13 @@ let make = _children => {
 
     reducer: action =>
       switch (action) {
-      // update state of input field
-      | InputEmailText(newText) => (
-          state => ReasonReact.Update({...state, email: newText})
+      // update state of input email field
+      | InputEmailText(email) => (
+          state => ReasonReact.Update({...state, email})
         )
-      | InputPasswordText(newText) => (
-          state => ReasonReact.Update({...state, password: newText})
+      // update state of input email field
+      | InputPasswordText(password) => (
+          state => ReasonReact.Update({...state, password})
         )
       // Submit an items
       | Submit => (state => handleSubmit(state))
