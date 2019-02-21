@@ -7,19 +7,20 @@
   height: 80px;
 }
 .app-intro {
-  font-size: large;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-direction: column;
+    -ms-flex-align: center;
+    width: 100%;
+    float: left;
+
 }
-.app-header {
-  height: 0px;
-  padding: 20px;
+.container {
+  margin: 37px 51px;
 }
 .app {
   width: 100%;
-  margin: 10px;
+  float: left ;
 }
 .loginForm {
   justify-content: center;
@@ -31,12 +32,14 @@
   margin-top: 10%;
 }
 .app-header {
-  margin: 10px;
+    height: auto;
+    width: 100%;
+    float: left;
 }
-
 .title {
   font-size: 25px;
   font-weight: 500;
+  color: white;
 }
 .title-div {
   margin-top: -10%;
@@ -47,8 +50,10 @@
   justify-content: center;
   align-self: center;
   flex-direction: column;
-  background-color:rgb(201, 219, 210);
   padding: 10%;
+  border: 1px solid gray;
+  border-radius: 0px;
+
 }
 .input input {
   width: 96%;
@@ -97,34 +102,45 @@
   color: gray;
   align-self: center;
 }
-.welcome-message {
+.welcome-message-div {
   float: left;
-  background-color: aquamarine;
-  width: 105%;
-  flex-direction: row;
-  margin-left: -3%;
+  width: 100%;
+  position: relative;
+  height: auto;
+  -ms-flex-direction: row;
+}
+
+.welcome-message {
+  color: #696969;
 }
 
 .todo-app {
   flex-direction: row;
 }
 
-.container {
-  width: 200%;
-  background-color: blue;
-  margin-left: -30%;
-}
 .input-div {
   width: 40%;
   float: left;
   height: auto;
-  background-color: blue;
   margin-right: 5%;
 }
 .list-div {
   width: 40%;
   float: left;
   height: auto;
+}
+
+.app-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.header-div {
+  background-color: black;
+  width: 100%;
+  -ms-flex-pack: center;
+  -ms-flex-align: center;
+  float: left;
 }
 
 

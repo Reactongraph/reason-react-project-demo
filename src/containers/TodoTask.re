@@ -82,12 +82,6 @@ let make = _children => {
 
     render: self => {
       let {items, inputText} = self.state;
-      <div className="app1">
-        <div className="app-header">
-          <div className="title-div">
-            <p className="title">{ReasonReact.string("Add todo data in list")}</p>
-          </div>
-        </div>
         <div className="container">
           <div className="input-div">
             <Input
@@ -115,7 +109,6 @@ let make = _children => {
               </div>
           </div>
         </div>
-      </div>;
     },
   };
 };

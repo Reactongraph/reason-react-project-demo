@@ -82,7 +82,7 @@ module Router = CreateRouter(Config);
         <Router
           render={({route}) =>
             switch (route) {
-            | Dashboard => <App message="Welcome" userEmail=parseLoginData[0] />
+            | Dashboard => <App message={"Welcome " ++ parseLoginData[0]} />
             | SignIn => <SignIn />
             | SignUp => <SignUp />
             }

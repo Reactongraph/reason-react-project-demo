@@ -1,8 +1,5 @@
 // import App.css
 [%bs.raw {|require('./App.css')|}];
-// import logo.svg
-[@bs.module] external logo : string = "./logo.svg";
-
 // define stateless component
 let component = ReasonReact.statelessComponent("App");
 
@@ -15,21 +12,17 @@ We also declare a render function with a single argument _self that is not used 
 */
 
 //  ReasonReact.string(). is used to render string
-let make = (~message, ~userEmail, _children) => {
+let make = (~message, _children) => {
   ...component,
   render: _self =>
     <div className="app">
       <div className="app-header">
-        <div className="welcome-message">
-          <table>
-            <tbody>
-              <tr>
-                <td>{ReasonReact.string(message)}</td>
-                <td>{ReasonReact.string(userEmail)} </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="welcome-message-div">
+          <h2 className="welcome-message"> {ReasonReact.string(message)}</h2>
         </div>
+      </div>
+      <div className="header-div">
+       <p className="title"> {ReasonReact.string("ReasonReact add todo list app")} </p>
       </div>
       <div className="app-intro"> <TodoTask /> </div>
     </div>,
