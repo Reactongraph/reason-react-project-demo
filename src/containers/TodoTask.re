@@ -15,6 +15,7 @@ type action =
 let component = ReasonReact.reducerComponent("TodoTask");
 
 let make = _children => {
+
   // Added new item in list
   let handleSubmit = state => {
     // ReasonReact.Router.push("Home");
@@ -26,6 +27,10 @@ let make = _children => {
     };
     let newList = [newItem, ...state.items];
     ReasonReact.Update({items: newList, inputText: ""});
+  };
+
+  let handleLogout =() => {
+    ReasonReact.Router.push("/");
   };
 
   // defines initial state
@@ -83,6 +88,9 @@ let make = _children => {
     render: self => {
       let {items, inputText} = self.state;
         <div className="container">
+          <div className="logout-button">
+            <button onClick={ _=> handleLogout()} className="button">{ReasonReact.string("Logout")} </button>
+          </div>
           <div className="input-div">
             <Input
               submit={_ => self.send(Submit)}

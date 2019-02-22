@@ -17,27 +17,26 @@ let make = (
   ...component,
   render: _self =>
     <div className="input">
-      <input
+      <InputField
         value={email}
         placeholder="Enter your email"
-        onChange={event =>
-          onEmailInputText(
-            ReactDOMRe.domElementToObj(ReactEventRe.Form.target(event))##value,
-          )
-        }
+        onInputText={onEmailInputText}
+        type_ = "text"
       />
-      <input
+      <InputField
         value={password}
         placeholder="Enter password"
         type_ = "password"
-        onChange={event =>
-          onPasswordInputText(
-            ReactDOMRe.domElementToObj(ReactEventRe.Form.target(event))##value,
-          )
-        }
+        onInputText={onPasswordInputText}
       />
-      <button onClick={_ => onSubmit()}> {str(buttonText)} </button>
+      <Button
+        onClick={_ => onSubmit()}
+        buttonText={str(buttonText)}
+      />
       <p className="registrationTitle">{str(registrationTitle)}</p>
-      <button onClick={_ => onNavigation()}> {str(navigationButtonText)} </button>
+      <Button
+        onClick={_ => onNavigation()}
+        buttonText={str(navigationButtonText)}
+      />
     </div>,
 };

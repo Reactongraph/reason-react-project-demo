@@ -1,5 +1,5 @@
 // import App.css
-[%bs.raw {|require('./App.css')|}];
+[%bs.raw {|require('../app.css')|}];
 // define stateless component
 let component = ReasonReact.statelessComponent("App");
 

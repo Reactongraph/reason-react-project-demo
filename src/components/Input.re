@@ -6,16 +6,15 @@ let make = (~value, ~onInputText, ~submit, _children) => {
   ...component,
   render: _self =>
     <div className="input">
-      <input
+      <InputField
         value
-        placeholder="Enter item"
-        onChange=(
-          event =>
-            onInputText(
-              ReactDOMRe.domElementToObj(ReactEventRe.Form.target(event))##value,
-            )
-        )
+        placeholder = "Enter item"
+        onInputText
+        type_ = "text"
       />
-      <button onClick=(_ => submit())> (str("Add")) </button>
+      <Button
+        onClick = {_ => submit()}
+        buttonText={str("Add")}
+      />
     </div>,
 };

@@ -2,7 +2,7 @@
     BuckleScript allows us to include some raw JavaScript code by using
     [%bs.raw ] and wrapping the JavaScript code with {| |}.*/
 
-[%bs.raw {|require('./index.css')|}];
+[%bs.raw {|require('./app.css')|}];
 
 [@bs.module "./registerServiceWorker"]
 external register_service_worker : unit => unit = "default";

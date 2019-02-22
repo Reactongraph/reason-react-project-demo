@@ -1,19 +1,18 @@
+/* Define css of application */
 .app {
   text-align: center;
 }
-
 .app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 .app-intro {
-    display: -ms-flexbox;
-    -ms-flex-pack: center;
-    -ms-flex-direction: column;
-    -ms-flex-align: center;
-    width: 100%;
-    float: left;
-
+  display: -ms-flexbox;
+  -ms-flex-pack: center;
+  -ms-flex-direction: column;
+  -ms-flex-align: center;
+  width: 100%;
+  float: left;
 }
 .container {
   margin: 37px 51px;
@@ -32,9 +31,9 @@
   margin-top: 10%;
 }
 .app-header {
-    height: auto;
-    width: 100%;
-    float: left;
+  height: auto;
+  width: 100%;
+  float: left;
 }
 .title {
   font-size: 25px;
@@ -44,7 +43,6 @@
 .title-div {
   margin-top: -10%;
 }
-
 .input {
   display: flex;
   justify-content: center;
@@ -53,7 +51,6 @@
   padding: 10%;
   border: 1px solid gray;
   border-radius: 0px;
-
 }
 .input input {
   width: 96%;
@@ -71,11 +68,9 @@
   margin-top: 5px;
   height: 40px;
 }
-
 .list {
   margin-top: 25px;
 }
-
 .item {
   display: flex;
   border: #f5f5f5 2px solid;
@@ -85,21 +80,18 @@
   margin-top: 5px;
   font-size: larger;
 }
-
 .item p {
   text-align: left;
   margin: auto;
 }
-
 .item button {
   padding: 10px;
-  background-color: grey;
+  background-color: rgb(91, 100, 91);
   font-size: 14px;
   opacity: 0.95;
 }
-
 .registrationTitle {
-  color: gray;
+  color: rgb(91, 100, 91);;
   align-self: center;
 }
 .welcome-message-div {
@@ -109,15 +101,12 @@
   height: auto;
   -ms-flex-direction: row;
 }
-
 .welcome-message {
-  color: #696969;
+  color: rgb(91, 100, 91);
 }
-
 .todo-app {
   flex-direction: row;
 }
-
 .input-div {
   width: 40%;
   float: left;
@@ -129,12 +118,10 @@
   float: left;
   height: auto;
 }
-
 .app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
 .header-div {
   background-color: black;
   width: 100%;
@@ -142,7 +129,34 @@
   -ms-flex-align: center;
   float: left;
 }
-
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.button {
+  background-color: rgb(91, 100, 91);
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.menuItems {
+  margin-bottom: 20px;
+  background-color:gray;
+  height: 32px;
+  padding-top: 10px;
+}
 
 @keyframes App-logo-spin {
   from {
