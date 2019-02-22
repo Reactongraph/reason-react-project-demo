@@ -2,6 +2,11 @@
 
 This project contains the source code for a todo application built with ReasonReact and BuckleScript
 
+## Preview
+![screenshot from 2019-02-22 12-14-31](https://user-images.githubusercontent.com/37612566/53224713-afdf7980-369b-11e9-80d4-630fe6843ee5.png)
+![screenshot from 2019-02-21 11-53-46](https://user-images.githubusercontent.com/37612566/53148044-75100f80-35cf-11e9-9988-7f443fe5a834.png)
+![screenshot from 2019-02-21 11-53-49](https://user-images.githubusercontent.com/37612566/53148045-75100f80-35cf-11e9-8dd0-528526f6ddf1.png)
+
 
 ## Getting Started
 * [install Reason](https://reasonml.github.io/reason-react/docs/en/installation.html)
@@ -30,6 +35,29 @@ $ npm start or yarn start
 ```
 
 * Visit your app at [http://localhost:3000](http://localhost:3000).
+
+### Project folder structure
+```
+src
+│   index.re
+│   routes.re  
+│   registerServiceWorker.js
+|   app.css
+|
+└───components
+│   │   App.re
+│   │   Button.re
+│   │   Input.re
+│   |   InputField.re
+|   |   InputForm.re
+|   |   Item.re
+|   |   TodoType.re
+│   
+└───containers
+|   │   SignIn.re
+|   │   SignUp.re
+|   |   TodoTask.re
+```
 
 ## Technologies used in the app.
 
