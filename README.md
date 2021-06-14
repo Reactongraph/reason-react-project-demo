@@ -1,14 +1,14 @@
 # reason-react-project-demo
 
-This project contains the source code for a todo application built with ReasonReact and BuckleScript
+
+## Description
+This POC contains the source code for a Todo application built with ReasonReact and BuckleScript. A user can add and remove items from this list. It also contains a Login and a Sign Up page.
+
 
 ## Preview
 ![screenshot from 2019-02-22 12-42-40](https://user-images.githubusercontent.com/37612566/53225884-6e50cd80-369f-11e9-990e-ce2b2805a1bc.png)
 ![screenshot from 2019-02-21 11-53-46](https://user-images.githubusercontent.com/37612566/53148044-75100f80-35cf-11e9-9988-7f443fe5a834.png)
 ![screenshot from 2019-02-21 11-53-49](https://user-images.githubusercontent.com/37612566/53148045-75100f80-35cf-11e9-8dd0-528526f6ddf1.png)
-
-## Description
-This POC contains the source code for a Todo application built with ReasonReact and BuckleScript. A user can add and remove items from this list. It also contains a Login and a Sign Up page.
 
 
 ## Getting Started
